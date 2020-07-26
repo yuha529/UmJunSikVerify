@@ -1,34 +1,3 @@
-const http = require("http");
-const express = require("express");
-const app = express();
-
-function formatDate(date) {
-  return date.getFullYear() + '년 ' + 
-    (date.getMonth() + 1) + '월 ' + 
-    date.getDate() + '일 ' + 
-    date.getHours() + '시 ' + 
-    date.getMinutes() + '분';
-}
-
-function GetCurrentTime()
-{
-  var date = new Date(Date.now()- (924 * 60 * 1000))
-  
-  var FormattedDate = formatDate(date)
-  
-  return FormattedDate
-}
-
-app.get("/", (request, response) => {
-  console.log(GetCurrentTime() + " : Got Pingged");
-  response.sendStatus(200);
-});
-
-app.listen(process.env.PORT);
-setInterval(() => {
-  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-}, 180000);
-
 const Discord = require("discord.js");
 var fs = require("fs");
 const client = new Discord.Client();
